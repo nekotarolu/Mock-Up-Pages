@@ -1,6 +1,6 @@
 # Mock-Up-Pages
 
-## MandalArtLikeMockUp.html
- * use [KUTE.js](http://thednp.github.io/kute.js/index.html)
-
+### MandalArtLikeMockUp.html
+ * Use [KUTE.js](http://thednp.github.io/kute.js/index.html)
+  - Operation check: https://nekotarolu.github.io/Mock-Up-Pages/MandalArtLikeMockUp.html
  
