@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mandal-Art Like MockUp</title>
+</head>
+
+
+<!-- CSS Declaration. -->
+<style type="text/css">
+body {
+	background-color: #222
+}
+
+.box {
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	top: 40px;
+	color: #fff;
+	font-size: 50px;
+	line-height: 150px;
+	text-align: center;
+	font-family: sans-serif;
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.box1 {left: 50px;  background-color: #9C27B0;}
+.box2 {left: 250px; background-color: #673AB7;}
+.box3 {left: 450px; background-color: #E91E63;}
+
+.box4 {top: 200px; left : 50px;  background-color: #9C27B0;left: 50px;}
+.box5 {top: 200px; left : 250px; background-color: #673AB7;left: 250px;}
+.box6 {top: 200px; left : 450px; background-color: #E91E63;left: 450px;}
+
+.box7 {top: 360px; left: 50px;  background-color: #9C27B0;}
+.box8 {top: 360px; left: 250px; background-color: #673AB7;}
+.box9 {top: 360px; left: 450px; background-color: #E91E63;}
+</style>
+
+
+<body>
+	<div id="container">
+		<div class="box box1" onClick="TweenStart();">Text1</div>
+		<div class="box box2" onClick="TweenStart();">Text2</div>
+		<div class="box box3" onClick="TweenStart();">Text3</div>
+		<div class="box box4" onClick="TweenStart();">Text4</div>
+		<div class="box box5" onClick="TweenStart();">Text5</div>
+		<div class="box box6" onClick="TweenStart();">Text6</div>
+		<div class="box box7" onClick="TweenStart();">Text7</div>
+		<div class="box box8" onClick="TweenStart();">Text8</div>
+		<div class="box box9" onClick="TweenStart();">Text9</div>
+	</div>
+
+	<!-- JS Declaration. -->
+	<script type="text/javascript"
+		src='https://cdn.jsdelivr.net/kute.js/1.5.0/kute.min.js'></script>
+	<script type="text/javascript">
+		var el1 = document.querySelector('.box1');
+		var el2 = document.querySelector('.box2');
+		var el3 = document.querySelector('.box3');
+		var el4 = document.querySelector('.box4');
+		var el5 = document.querySelector('.box5');
+		var el6 = document.querySelector('.box6');
+		var el7 = document.querySelector('.box7');
+		var el8 = document.querySelector('.box8');
+		var el9 = document.querySelector('.box9');
+
+		var tween1 = KUTE.fromTo(el1, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+		var tween2 = KUTE.fromTo(el2, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+		var tween3 = KUTE.fromTo(el3, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+		var tween4 = KUTE.fromTo(el4, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+		var tween5 = KUTE.fromTo(el5, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+		var tween6 = KUTE.fromTo(el6, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+		var tween7 = KUTE.fromTo(el7, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+		var tween8 = KUTE.fromTo(el8, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+		var tween9 = KUTE.fromTo(el9, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+
+		function TweenStart() {
+			tween1.start();
+			tween2.start();
+			tween3.start();
+			tween4.start();
+			tween5.start();
+			tween6.start();
+			tween7.start();
+			tween8.start();
+			tween9.start();
+		};
+	</script>
+
+
+</body>
+
+
+</html>
