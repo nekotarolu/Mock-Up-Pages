@@ -41,21 +41,24 @@ body {
 
 <body>
 	<div id="container">
-		<div class="box box1" onClick="TweenStart();">Text1</div>
-		<div class="box box2" onClick="TweenStart();">Text2</div>
-		<div class="box box3" onClick="TweenStart();">Text3</div>
-		<div class="box box4" onClick="TweenStart();">Text4</div>
-		<div class="box box5" onClick="TweenStart();">Text5</div>
-		<div class="box box6" onClick="TweenStart();">Text6</div>
-		<div class="box box7" onClick="TweenStart();">Text7</div>
-		<div class="box box8" onClick="TweenStart();">Text8</div>
-		<div class="box box9" onClick="TweenStart();">Text9</div>
+		<div id="b1" class="box box1" onClick="ClickFunction();">Txt1</div>
+		<div id="b2" class="box box2" onClick="ClickFunction();">Txt2</div>
+		<div id="b3" class="box box3" onClick="ClickFunction();">Txt3</div>
+		<div id="b4" class="box box4" onClick="ClickFunction();">Txt4</div>
+		<div id="b5" class="box box5" onClick="ClickFunction();">Txt5</div>
+		<div id="b6" class="box box6" onClick="ClickFunction();">Txt6</div>
+		<div id="b7" class="box box7" onClick="ClickFunction();">Txt7</div>
+		<div id="b8" class="box box8" onClick="ClickFunction();">Txt8</div>
+		<div id="b9" class="box box9" onClick="ClickFunction();">Txt9</div>
 	</div>
 
 	<!-- JS Declaration. -->
 	<script type="text/javascript"
 		src='https://cdn.jsdelivr.net/kute.js/1.5.0/kute.min.js'></script>
 	<script type="text/javascript">
+		//click回数制御用の変数.
+		var clickRadio = 0;
+		
 		var el1 = document.querySelector('.box1');
 		var el2 = document.querySelector('.box2');
 		var el3 = document.querySelector('.box3');
@@ -65,18 +68,25 @@ body {
 		var el7 = document.querySelector('.box7');
 		var el8 = document.querySelector('.box8');
 		var el9 = document.querySelector('.box9');
-
-		var tween1 = KUTE.fromTo(el1, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
-		var tween2 = KUTE.fromTo(el2, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
-		var tween3 = KUTE.fromTo(el3, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
-		var tween4 = KUTE.fromTo(el4, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
-		var tween5 = KUTE.fromTo(el5, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
-		var tween6 = KUTE.fromTo(el6, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
-		var tween7 = KUTE.fromTo(el7, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
-		var tween8 = KUTE.fromTo(el8, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
-		var tween9 = KUTE.fromTo(el9, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
-
+		
 		function TweenStart() {
+			console.log("TweenStart in");
+			var tween1 = KUTE.fromTo(el1, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+			var tween2 = KUTE.fromTo(el2, {rotateY:0},{rotateY:360}, {perspective:400, duration: 1500});
+			var tween3 = KUTE.fromTo(el3, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+			var tween4 = KUTE.fromTo(el4, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+			
+			if(clickRadio % 2 == 0) {
+				var tween5 = KUTE.fromTo(el5, {rotateZ:0},{rotateZ:360},{duration: 1500});
+			} else {
+				var tween5 = KUTE.fromTo(el5, {rotateZ:0},{rotateZ:-360},{duration: 1500});
+			}
+			
+			var tween6 = KUTE.fromTo(el6, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+			var tween7 = KUTE.fromTo(el7, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+			var tween8 = KUTE.fromTo(el8, {rotateY:0},{rotateY:360}, {perspective:400, duration: 1500});
+			var tween9 = KUTE.fromTo(el9, {rotateX : 0}, {rotateX : 360}, {duration : 1500});
+			
 			tween1.start();
 			tween2.start();
 			tween3.start();
@@ -86,6 +96,42 @@ body {
 			tween7.start();
 			tween8.start();
 			tween9.start();
+			console.log("TweenStart out");
+		};
+
+		function DivValueChange() {
+			console.log("DivValueChange in");
+			if(clickRadio % 2 == 0) {
+				document.getElementById("b1").innerHTML = "Txt1";
+				document.getElementById("b2").innerHTML = "Txt2";
+				document.getElementById("b3").innerHTML = "Txt3";
+				document.getElementById("b4").innerHTML = "Txt4";
+				document.getElementById("b5").innerHTML = "Txt5";
+				document.getElementById("b6").innerHTML = "Txt6";
+				document.getElementById("b7").innerHTML = "Txt7";
+				document.getElementById("b8").innerHTML = "Txt8";
+				document.getElementById("b9").innerHTML = "Txt9";
+			} else {
+				document.getElementById("b1").innerHTML = "TxtA";
+				document.getElementById("b2").innerHTML = "TxtB";
+				document.getElementById("b3").innerHTML = "TxtC";
+				document.getElementById("b4").innerHTML = "TxtD";
+				document.getElementById("b5").innerHTML = "TxtE";
+				document.getElementById("b6").innerHTML = "TxtF";
+				document.getElementById("b7").innerHTML = "TxtG";
+				document.getElementById("b8").innerHTML = "TxtH";
+				document.getElementById("b9").innerHTML = "TxtI";
+			}
+			
+			console.log("DivValueChange out");
+		};
+		
+		function ClickFunction() {
+			console.log("ClickFunction in :" + clickRadio);
+			clickRadio++;
+			TweenStart();
+			DivValueChange();
+			console.log("ClickFunction out");
 		};
 	</script>
 
