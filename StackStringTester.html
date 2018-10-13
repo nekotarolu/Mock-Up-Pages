@@ -1,0 +1,124 @@
+<html>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<head>
+<meta charset="utf-8">
+<title>stack string tester</title>
+</head>
+
+<!-- CSS Declaration. -->
+<style type="text/css">
+/* Chat containers */
+.container {
+	border: 2px solid #dedede;
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px 0;
+	float: left;
+}
+
+/* Darker chat container */
+.darker {
+	border-color: #ccc;
+	background-color: #ddd;
+	float: right;
+}
+</style>
+
+<body>
+	<div id="testResult">
+		<div class="container">
+			<p>Hello! Stack-String-Service Tester</p>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<input type="text" class="form-control" id="stringTester1"
+			placeholder="Please input 'string'"> <small
+			id="stackstringHelp" class="form-text text-muted">Please
+			input 'string' and 'Push' it. Then good things happen</small>
+	</div>
+
+	<button type="button" class="btn btn-primary btn-block" id="PushPopBtn"
+		onclick="onClickBtn()">PopStack</button>
+
+
+	<!-- JS Declaration. -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		$('#stringTester1').change(function buttonValModify() {
+			if(document.getElementById("stringTester1").value == "") {
+				$('#PushPopBtn').text("PopStack");
+			} else {
+				$('#PushPopBtn').text("PushStack");
+			}
+		});
+
+		function pushStack() {
+			console.log("-- start pushStack --");
+			var head = "<div class=\"container darker\"><p>";
+			var str = document.getElementById("stringTester1").value;
+			var foot = "</p></div>";
+			var appendTex = head + str + foot;
+			$('#testResult').append(appendTex);
+
+			var xhr = new XMLHttpRequest();
+			var url = "https://stack-string.herokuapp.com/PushStack?string="
+					+ encodeURIComponent(str);
+			xhr.open("POST", url, true);
+			xhr.send("");
+		}
+
+		function popStack() {
+			console.log("-- start popStack --");
+			
+			var xhr = new XMLHttpRequest();
+			var url = "https://stack-string.herokuapp.com/PopStack"
+			xhr.open("GET", url, false);
+			xhr.send("");
+
+			console.log(xhr.response);
+			var res = (xhr.response).split("'");
+
+			if(res[1] === undefined) {
+				//何もしない.
+			} else {
+				var head = "<div class=\"container\"><p>";
+				var str = res[1];
+				var foot = "</p></div>";
+				var appendTex = head + str + foot;
+				$('#testResult').append(appendTex);
+			}
+		}
+
+		function onClickBtn() {
+			var txtFild = document.getElementById("stringTester1");
+
+			var str = txtFild.value;
+			if (str == "") {
+				popStack();
+			} else {
+				pushStack();
+			}
+			console.log(str);
+		}
+	</script>
+
+
+</body>
+
+</html>
