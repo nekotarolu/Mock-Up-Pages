@@ -6,4 +6,4 @@
  
 ### StackStringTester.html
  * Use stack-string-service
-  - https://nekotarolu.github.io/Mock-Up-Pages/StackStringTester.html
+  - Operation check: https://nekotarolu.github.io/Mock-Up-Pages/StackStringTester.html
