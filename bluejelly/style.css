@@ -1,27 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
-
-/*************************** RESET ***************************/
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-	background: transparent;
-}
-/*************************** RESET ***************************/
-
-
-html, body {
-	height: 100%;
-	width: 100%;
-	font-family: 'Lato', Verdana, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-	min-width: 640px;
-	position: relative;
-  background-color: #f0f0f0;
+body {
+  padding-top: auto;
+  padding-bottom: auto;
+  background-color: #eee;
 }
 
 hr{
@@ -33,30 +15,12 @@ hr{
 
 .container{
   margin: auto;
-  width: 100%;
-  min-height: 100%;
-  max-width: 640px;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+  width: auto;
+  min-height: auto;
+  max-width: auto;
+  box-shadow: 20px 40px 20px rgba(0,0,0,0.3);
   background-color: #f0f0f0;
-  position: relative;
-}
-.title{
-  width: 100%;
-  background-color: #fff;
-  padding: 20px 0px 20px 0px;
-}
-
-.contents{
-  padding: 25px 0px 100px 0px;
-}
-
-.footer{
-  width: 100%;
-  font-size:12px;
-  position: absolute;
-  bottom: 0px;
-  height: 60px;
-  color: #9a9a9a;
+  position: auto;
 }
 
 .margin{
@@ -67,82 +31,46 @@ hr{
   border-color: rgba(0, 0, 0, 0);
 }
 
-.button{
-  border-width: 1px;
-  border-color: #e6e6e6;
-  border-style: solid;
-  background-color: #fff;
-  padding: 5px 20px 5px 20px;
-  color: #4d4d4d;
-  font-size: 14px;
-  font-weight: 300;
-  margin: 0px;
+
+.chart {
+  position: relative;
+  float: left; 
+  margin-right: 20px;
 }
-.button:hover{
-  border-color: #ccc;
-}
-.button:active{
-  background-color: #f0f0f0;
+.chart .count {
+  position: absolute;
+  border-radius: 50%;
+  top: 24px;
+  left: 24px;
+  height: 152px;
+  width: 152px;
 }
 
-#chart{
-	margin-bottom: 20px;
+.chart em, 
+.chart span {
+  font-family: Arial;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
 }
-
-#title{
-  color:#ff8319;
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 2em;
+.chart em {
+  display: block;
+  font-size: 50px;
+  font-style: normal;
+  color: #fff;
+  line-height: 150px;
 }
-
-#subtitle{
-  color:#808080;
-  font-size: 20px;
-  font-weight: 300;
+.chart .caption {
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  color: #fff;
 }
+#chart2 .count {
+  background: url(http://startapp.jp/img/refs/jsfiddle_medium_6628140291.jpg) -20px -20px no-repeat;
 
-#data_text, #data_text2{
-  color:#448aff;
-  font-size:72px;
-  font-weight: 300;
-  line-height: 1.5em;
 }
-
-#device_name, #device_name2{
-  color:#ff8319;
-  font-size:36px;
-  font-weight: 300;
-  line-height: 1.5em;
+#chart2 .count em {
+  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
 }
-
-#uuid_name, #uuid_name2{
-  color:#ff8319;
-	font-size:14px;
-  font-weight: 300;
-}
-
-#unit, #unit2{
-	color:#448aff;
-	font-size:18px;
-  font-weight: 300;
-}
-
-
-#status, #status2{
-	color:#448aff;
-	font-size:14px;
-  font-weight: 300;
-}
-
-#status_text, #status_text2{
-	color:#448afe;
-	font-size:20px;
-  font-weight: 300;
-}
-
-
-
-a { text-decoration: none; }
-a:link { color: #9a9a9a; }
-a:visited { color: #9a9a9a; }
