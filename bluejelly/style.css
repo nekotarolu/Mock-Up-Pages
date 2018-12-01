@@ -18,7 +18,7 @@ hr{
   width: auto;
   min-height: auto;
   max-width: auto;
-  box-shadow: 20px 40px 20px rgba(0,0,0,0.3);
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
   background-color: #f0f0f0;
   position: auto;
 }

@@ -9,7 +9,7 @@ Copyright 2017 JellyWare Inc. All Rights Reserved.
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="BlueJelly">
   <meta name="viewport" content="width=640, maximum-scale=1.0, user-scalable=yes">
-  <title>ConecO-Mass</title>
+  <title>ConecO-Server</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -19,15 +19,20 @@ Copyright 2017 JellyWare Inc. All Rights Reserved.
 <body>
   <div class="jumbotron">
     <div class="container">
-      <h2 class="display-3">ConecO-Mass</h2>
-      <p class="lead">＜後付けできるsmart mass scale＞</p>
+      <h2 class="display-3">ConecO-Server</h2>
+      <p class="lead">＜後付けできる smart mass scale＞</p>
       <div class="btn-group btn-block">
         <button id="startNotifications" class="btn btn-primary col-md-6 col-sm-6 col-xs-6">Read</button>
         <button id="stopNotifications" class="btn btn-info col-md-6 col-sm-6 col-xs-6">Stop</button>
       </div>
+      <!-- <button class="btn" onClick="testApi()">debug</button> -->
       <hr class="my-4">
 
       <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="object-scl-field">
+          <td align="right"><b> モノの名前　：</b></td>
+          <td><input class="form-control" id="object-name-value" type="text" name="object-name" size="100" value="コーヒー"></td>
+        </div>
         <div class="col-md-6 col-sm-12 col-xs-12" id="max-scl-field">
           <td align="right"><b> 内容量を入力してください(g)　：</b></td>
           <td><input class="form-control" id="max-scl-value" type="number" name="maximum-scale" size="100" value="300"></td>
@@ -40,14 +45,17 @@ Copyright 2017 JellyWare Inc. All Rights Reserved.
       <hr class="my-4">
 
       <div class="row">
-        <div class="col-md-6 col-sm-12 col-xs-12">
-          <h1 id="unit">コーヒーの残量：</h1>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <h1 id="unit"></h1>
         </div>
-        <div class="col-md-6 col-sm-12 col-xs-12">
-          <h1 id="data_text">200g</h1>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <h1 id="data_text">0 g</h1>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
-          <h2 id="status_text">まだ十分残っています</h2>
+          <h2 id="tmp_text">　</h2>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h1 id="status_text"></h1>
         </div>
       </div>
 
@@ -59,6 +67,20 @@ Copyright 2017 JellyWare Inc. All Rights Reserved.
     //--------------------------------------------------
     //Nak Add.
     //--------------------------------------------------
+    counter = 0;
+    value = 0;
+
+    function testApi() {
+      value = 100
+      modifyHtmlValue();
+    }
+
+    function getObjectNameValue() {
+      retValue = document.getElementById("object-name-value").value;
+      console.log("object-name-value=" + retValue);
+      return retValue;
+    }
+
     function getNotificationScale() {
       retValue = document.getElementById("notif-scl-value").value;
       console.log("notif-scl-value=" + retValue);
@@ -82,6 +104,8 @@ Copyright 2017 JellyWare Inc. All Rights Reserved.
     //ロード時の処理
     //--------------------------------------------------
     window.onload = function () {
+      document.getElementById('unit').innerHTML = "残量：";
+      document.getElementById('status_text').innerHTML = "「メッセージが表示されます」";
       //UUIDの設定
       ble.setUUID("UUID1", "713d0000-503e-4c75-ba94-3148f18d941e", "713d0002-503e-4c75-ba94-3148f18d941e");  //BLEnano SimpleControl rx_uuid
     }
@@ -106,79 +130,65 @@ Copyright 2017 JellyWare Inc. All Rights Reserved.
       //document.getElementById('status').innerHTML = "connected GATT!";
     }
 
-    counter = 0;
-
     //--------------------------------------------------
     //Read後の処理：得られたデータの表示など行う
     //--------------------------------------------------
     ble.onRead = function (data, uuid) {
+      updateValue(data);
+
       //フォーマットに従って値を取得
-      value = Math.round(data.getInt16(0) * 0.771 - 126.48) - 252;//2Byteの場合のフォーマット
-      notificationValue = getNotificationScale();
-      var xhr = new XMLHttpRequest();
-      var url = "https://stack-string.herokuapp.com/PushStack/mass-value?string="
-        + encodeURIComponent(value + "," + notificationValue);
-      xhr.open("POST", url, true);
-      xhr.send("");
-
-      //TODO:ここを実装変更. I/FとしてStack-Stringを使ってpython側で通知アプリを作る.
-      //-378は空ビンの重さと校正時の切片の合計。浮かせているときは-378になる
-      if (-100 <= value && value <= 10) {
-        attention = "コーヒーがなくなりました。</br>LINEにお知らせしました。";
-      }
-      else if (11 <= value && value <= 50) {
-        attention = "そろそろコーヒーがなくなりそうです。</br>LINEにお知らせしました。"
-      }
-      else if (value <= -101) {
-        attention = "使用中・・・"
-      }
-      else {
-        attention = "まだ十分残っています"
-      }
-
-      if (value <= 0) {
-        value = 0;
-      }
-
-      if (counter == 3) {
-        pre_value1 = value;
-        counter++;
-      }
-
-      if (counter == 5) {
-        pre_value2 = value;
-        counter++;
-      }
-
-      if (counter == 8) {
-        pre_value3 = value;
-        counter++;
-      }
-
-      if (counter >= 10) {
-
-        var xhr = new XMLHttpRequest();
-        var url = "https://stack-string.herokuapp.com/PushStack/mass?string="
-          + encodeURIComponent(attention);
-        xhr.open("POST", url, true);
-        xhr.send("");
+      if (counter > 100) {
         counter = 0;
 
-        value_fin = (pre_value1 + pre_value2 + pre_value3 + value) / 4
+        notificationValue = getNotificationScale();
+        objectNameValue = getObjectNameValue();
+        var xhr = new XMLHttpRequest();
+        var url = "https://stack-string.herokuapp.com/PushStack/mass-value?string="
+          + encodeURIComponent(value + "," + notificationValue + "," + objectNameValue);
+        xhr.open("POST", url, true);
+        xhr.send("");
 
-        //HTMLに値を表示
-        document.getElementById('unit').innerHTML = "コーヒーの残量：";
-        document.getElementById('data_text').innerHTML = Math.round(value_fin) + 'g';
-        document.getElementById('status_text').innerHTML = attention;
-
-      }
-      else {
+        var xhr2 = new XMLHttpRequest();
+        var url2 = "https://stack-string.herokuapp.com/PushStack/mass?string="
+          + encodeURIComponent(value + "," + notificationValue + "," + objectNameValue);
+        xhr2.open("POST", url2, true);
+        xhr2.send("");
+      } else {
         counter++;
       }
-      //コンソールに値を表示
-      console.log(value + "," + notificationValue);
+
+      modifyHtmlValue();
     }
 
+    //--------------------------------------------------
+    //Nak Add.
+    //--------------------------------------------------
+    function updateValue(data) {
+      //TODO 有賀さんメソッドと結合
+      value = Math.round(data.getInt16(0) * 0.771 - 126.48);//2Byteの場合のフォーマット
+
+      //コンソールに値を表示
+      console.log("value = " + value);
+    }
+
+    function modifyHtmlValue() {
+      notificationValue = getNotificationScale();
+
+      if (-100 <= value && value < notificationValue) {
+        attention = "「通知残量を下回りました。お知らせします。」";
+      }
+      else if (notificationValue <= value && value <= notificationValue * 1.25) {
+        attention = "「そろそろなくなりそうです。」"
+      }
+      else {
+        attention = "「まだ十分残っています」"
+      }
+
+      //HTMLに値を表示
+      document.getElementById('unit').innerHTML = getObjectNameValue() + "残量：";
+      document.getElementById('data_text').innerHTML = Math.round(value) + " g";
+      document.getElementById('status_text').innerHTML = attention;
+    }
 
     //--------------------------------------------------
     //Start Notify後の処理
