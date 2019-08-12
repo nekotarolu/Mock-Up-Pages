@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="icon" href="../img/favicon.png" sizes="16x16"
+	type="image/png">
+<title>青春ﾁｮｲｽ</title>
+
+<!-- Bootstrap core CSS Link -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+<!-- SigninTemplate css Link. -->
+<link href="../css/common.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+	<!-- header -->
+	<nav class="navbar fixed-top alert-info">
+		<a class="navbar-brand"
+			href="javascript:history.back()">◀</a>
+		<p class="navbar-brand">チョイス</p>
+	</nav>
+
+	<!-- Main contents -->
+	<div class="container">
+		<h3>先輩を探すタグを選んで次へ進もう！</h3>
+		<hr>
+		
+		<div class="btn-group" data-toggle="buttons">
+			<label class="btn btn-default"> <input type="checkbox"
+				autocomplete="off"> タグ１
+			</label> <label class="btn btn-default"> <input
+				type="checkbox" autocomplete="off"> タグ２
+			</label> <label class="btn btn-default"> <input
+				type="checkbox" autocomplete="off"> タグ３
+			</label> <label class="btn btn-default"> <input
+				type="checkbox" autocomplete="off"> タグ４
+			</label> <label class="btn btn-default"> <input
+				type="checkbox" autocomplete="off"> タグ５
+			</label> <label class="btn btn-default"> <input
+				type="checkbox" autocomplete="off"> タグ６
+			</label> <label class="btn btn-default"> <input
+				type="checkbox" autocomplete="off"> タグ７
+			</label> <label class="btn btn-default"> <input
+				type="checkbox" autocomplete="off"> タグ８
+			</label> <label class="btn btn-default"> <input
+				type="checkbox" autocomplete="off"> タグ９
+			</label>
+		</div>
+		
+		<hr>
+		
+		<button class="btn btn-lg btn-primary btn-block" type="submit" onClick="pressNextButton();">次へ ▶</button>
+	</div>
+
+	<script type="text/javascript" src='../js/jquery-3.3.1.min.js'></script>
+	<script type="text/javascript" src='../js/bootstrap.js'></script>
+	
+	<script type="text/javascript">
+		function pressNextButton() {
+			location.href = "./userlist.html";
+		};
+	</script>
+
+</body>
+
+
+</html>

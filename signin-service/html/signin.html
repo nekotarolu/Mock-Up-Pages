@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="icon" href="../img/favicon.png" sizes="16x16" type="image/png">
+<title>青春ﾁｮｲｽ</title>
+
+<!-- Bootstrap core CSS Link -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+<!-- SigninTemplate css Link. -->
+<link href="../css/signin.css" rel="stylesheet">
+
+<!-- SigninTemplate css Link. -->
+<link href="../css/common.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div class="container">
+		<form class="form-signin" id="formSignin" onSubmit="return pressLoginButton();">
+			<h2 class="form-signin-heading">青春チョイス</h2>
+			<label for="inputUserId" class="sr-only">UserId</label>
+			<input type="userid" id="inputUserId" class="form-control" placeholder="ユーザーＩＤ" required="" autofocus="">
+			<label for="inputPassword" class="sr-only">Password</label> 
+			<input type="password" id="inputPassword" class="form-control" placeholder="パスワード" required="">
+			<button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+		</form>
+	</div>
+
+	<script type="text/javascript">
+		function pressLoginButton() {
+			var useridValue = document.forms.formSignin.inputUserId.value;
+			if (useridValue != null && useridValue != "") {
+				console.log("pressLoginButton() in if");
+				location.href = "./tagselect.html";
+				return false;
+			} else {
+				//No Action.
+			}
+		};
+	</script>
+
+</body>
+
+
+</html>

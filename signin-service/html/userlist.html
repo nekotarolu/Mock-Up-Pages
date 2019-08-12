@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="icon" href="../img/favicon.png" sizes="16x16" type="image/png">
+<title>青春ﾁｮｲｽ</title>
+
+<!-- Bootstrap core CSS Link -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+<!-- SigninTemplate css Link. -->
+<link href="../css/common.css" rel="stylesheet">
+
+<!-- Toggle Design css Link -->
+<link href="../css/toggle.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<!-- header -->
+	<nav class="navbar fixed-top alert-info">
+		<a class="navbar-brand"
+			href="javascript:history.back()">◀</a>
+		<p class="navbar-brand">検索結果</p>
+	</nav>
+
+	<!-- Main contents -->
+	<div class="container bootstrap snippet">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="main-box no-header clearfix">
+					<div class="main-box-body clearfix">
+						<div class="table-responsive">
+							<table class="table user-list">
+								<thead>
+									<tr>
+										<th class="text-center"><span>先輩</span></th>
+										<th class="text-center"><span>タグ</span></th>
+										<th class="text-center"><span>お気に入り</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><img src="../img/user_1.jpg"
+											alt=""> <a href="./user01.html" class="user-link">User 01</a></td>
+										<td class="text-center">
+											<span class="label label-default">tag1</span>
+											<span class="label label-success">tag2</span>
+											<span class="label label-danger">tag3</span>
+										</td>
+										<td class="text-center">
+											<label class='tgl-btn' for='cb5'></label>
+											<input class='tgl tgl-flip' id='cb5' type='checkbox'>
+											<label class='tgl-btn' data-tg-off='Follow' data-tg-on='Follow' for='cb5'></label>
+											<label class='tgl-btn' for='cb5'></label>
+										</td>
+									</tr>
+
+									<tr>
+										<td><img src="../img/user_3.jpg"
+											alt=""> <a href="./user02.html" class="user-link">User 02</a> </td>
+										<td class="text-center">
+											<span class="label label-default">tag1</span>
+											<span class="label label-success">tag2</span>
+										</td>
+										<td class="text-center">
+											<label class='tgl-btn' for='cb6'></label>
+											<input class='tgl tgl-flip' id='cb6' type='checkbox'>
+											<label class='tgl-btn' data-tg-off='Follow' data-tg-on='Follow' for='cb6'></label>
+											<label class='tgl-btn' for='cb6'></label>
+										</td>
+									</tr>
+
+									<tr>
+										<td><img src="../img/user_2.jpg"
+											alt=""> <a href="./user03.html" class="user-link">User 03</a> </td>
+										<td class="text-center">
+											<span class="label label-success">tag2</span>
+											<span class="label label-danger">tag3</span>
+										</td>
+										<td class="text-center">
+											<label class='tgl-btn' for='cb7'></label>
+											<input class='tgl tgl-flip' id='cb7' type='checkbox'>
+											<label class='tgl-btn' data-tg-off='Follow' data-tg-on='Follow' for='cb7'></label>
+											<label class='tgl-btn' for='cb7'></label>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<script type="text/javascript" src='../js/jquery-3.3.1.min.js'></script>
+	<script type="text/javascript" src='../js/bootstrap.js'></script>
+</body>
+
+</html>
